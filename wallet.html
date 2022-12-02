@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>UI Product Card</title>
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1"><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="./stylew.css">
+
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+  <script>
+
+    window.ethereum.enable();
+
+    const WalletContractAddress = "0x62A7271A23DC7f9c9c5f4f9EefebfBBB59e70236";
+    const WalletContractABI = [
+ {
+    "inputs": [
+       {
+          "internalType": "address payable",
+          "name": "_to",
+          "type": "address"
+       },
+       {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+       }
+    ],
+    "name": "send",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+ },
+ {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+ },
+ {
+    "inputs": [
+       {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+       }
+    ],
+    "name": "withdraw",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+ },
+ {
+    "stateMutability": "payable",
+    "type": "receive"
+ },
+ {
+    "inputs": [],
+    "name": "getBalance",
+    "outputs": [
+       {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+       }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+ },
+ {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+       {
+          "internalType": "address payable",
+          "name": "",
+          "type": "address"
+       }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+ }
+]
+    let WalletContract;
+    let signer;
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum, "ropsten");
+
+    provider.send("eth_requestAccounts", []).then(() => {
+    provider.listAccounts().then((accounts) => {
+    signer = provider.getSigner(accounts[0]);
+    WalletContract = new ethers.Contract(
+    WalletContractAddress,
+    WalletContractABI,
+    signer
+  );
+});
+});
+
+async function getBalance() {
+const getBalance = WalletContract.getBalance();
+const Bal = await getBalance;
+Balance=Bal/1000000000000000000;
+console.log(Balance);
+document.getElementById("Bal").innerText=Balance +"ETH";
+}
+
+function copy(that){
+var inp =document.createElement('input');
+document.body.appendChild(inp)
+inp.value =that.textContent
+inp.select();
+document.execCommand('copy',false);
+inp.remove();
+}
+
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+</script>
+<style>
+button1 {
+   display: inline-block;
+   background-color: orangered;
+   border-radius: 10px;
+   border: 4px white;
+   color: white;
+   text-align: center;
+   font-size: 20px;
+   padding: 10px;
+   width: auto;
+   -webkit-transition: all 0.5s;
+   -moz-transition: all 0.5s;
+   -o-transition: all 0.5s;
+   transition: all 0.5s;
+   cursor: pointer;
+   margin: 4px;
+ }
+ a:link, a:visited {
+  color: white;
+  padding: 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+/* Popup container - can be anything you want */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+ </style>
+</head>
+
+<body data-spy="scroll" data-target="#navbarSupportedContent">
+ <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<div class ="container-fluid">
+   <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="3em" height="2em" class ="dog" preserveAspectRatio="xMidYMid  meet" viewBox="0 0 256 240"><path fill="#E17726" d="M250.066 0L140.219 81.279l20.427-47.9z"/><path fill="#E27625" d="m6.191.096l89.181 33.289l19.396 48.528zM205.86 172.858l48.551.924l-16.968 57.642l-59.243-16.311zm-155.721 0l27.557 42.255l-59.143 16.312l-16.865-57.643z"/><path fill="#E27625" d="m112.131 69.552l1.984 64.083l-59.371-2.701l16.888-25.478l.214-.245zm31.123-.715l40.9 36.376l.212.244l16.888 25.478l-59.358 2.7zM79.435 173.044l32.418 25.259l-37.658 18.181zm97.136-.004l5.131 43.445l-37.553-18.184z"/><path fill="#D5BFB2" d="m144.978 195.922l38.107 18.452l-35.447 16.846l.368-11.134zm-33.967.008l-2.909 23.974l.239 11.303l-35.53-16.833z"/><path fill="#233447" d="m100.007 141.999l9.958 20.928l-33.903-9.932zm55.985.002l24.058 10.994l-34.014 9.929z"/><path fill="#CC6228" d="m82.026 172.83l-5.48 45.04l-29.373-44.055zm91.95.001l34.854.984l-29.483 44.057zm28.136-44.444l-25.365 25.851l-19.557-8.937l-9.363 19.684l-6.138-33.849zm-148.237 0l60.435 2.749l-6.139 33.849l-9.365-19.681l-19.453 8.935z"/><path fill="#E27525" d="m52.166 123.082l28.698 29.121l.994 28.749zm151.697-.052l-29.746 57.973l1.12-28.8zm-90.956 1.826l1.155 7.27l2.854 18.111l-1.835 55.625l-8.675-44.685l-.003-.462zm30.171-.101l6.521 35.96l-.003.462l-8.697 44.797l-.344-11.205l-1.357-44.862z"/><path fill="#F5841F" d="m177.788 151.046l-.971 24.978l-30.274 23.587l-6.12-4.324l6.86-35.335zm-99.471 0l30.399 8.906l6.86 35.335l-6.12 4.324l-30.275-23.589z"/><path fill="#C0AC9D" d="m67.018 208.858l38.732 18.352l-.164-7.837l3.241-2.845h38.334l3.358 2.835l-.248 7.831l38.487-18.29l-18.728 15.476l-22.645 15.553h-38.869l-22.63-15.617z"/><path fill="#161616" d="m142.204 193.479l5.476 3.869l3.209 25.604l-4.644-3.921h-36.476l-4.556 4l3.104-25.681l5.478-3.871z"/><path fill="#763E1A" d="M242.814 2.25L256 41.807l-8.235 39.997l5.864 4.523l-7.935 6.054l5.964 4.606l-7.897 7.191l4.848 3.511l-12.866 15.026l-52.77-15.365l-.457-.245l-38.027-32.078zm-229.628 0l98.326 72.777l-38.028 32.078l-.457.245l-52.77 15.365l-12.866-15.026l4.844-3.508l-7.892-7.194l5.952-4.601l-8.054-6.071l6.085-4.526L0 41.809z"/><path fill="#F5841F" d="m180.392 103.99l55.913 16.279l18.165 55.986h-47.924l-33.02.416l24.014-46.808zm-104.784 0l-17.151 25.873l24.017 46.808l-33.005-.416H1.631l18.063-55.985zm87.776-70.878l-15.639 42.239l-3.319 57.06l-1.27 17.885l-.101 45.688h-30.111l-.098-45.602l-1.274-17.986l-3.32-57.045l-15.637-42.239z"/></svg>
+        <h1><a href="#" class="navbar-brand">My Wallet</a></h1>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#mynav" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mynav">
+        <ul class="navbar-nav ml-auto text-center">
+          <!--<li class="nav-item"><a href="#" class="nav-link active">Home</a></li>-->
+
+</div>
+</div>
+</ul>
+</div>
+</div>
+</nav>
+
+
+<!-- partial:index.partial.html -->
+<div class="container">
+   <div class="wrapper">
+      <div class="header">
+         <div class="price" style= >
+            <h1>Account Address</h1>
+            <div class="popup" onclick="myFunction()">
+            <h9><button onclick="copy(this)" style="color:orangered; background-color: white; font-size:larger; font:bolder; ">0x62A7271A23DC7f9c9c5f4f9EefebfBBB59e70236</button></h9>
+            <span class="popuptext" id="myPopup">Copied..</span>
+         </div>
+            <div><input/></div>
+         </div>
+      </div>
+      <div class="product">
+             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M11.944 17.97L4.58 13.62L11.943 24l7.37-10.38l-7.372 4.35h.003zM12.056 0L4.69 12.223l7.365 4.354l7.365-4.35L12.056 0z"/></svg>
+         </div>
+      
+      <div class="info">
+         <h2>
+         <div class="title" id="Bal">
+         </div></h2>
+         <button1 onclick="getBalance()">REFRESH BALANCE</button1>
+      <div>
+         <button1 style="color: white ;"><a href="index2.html">SEND</a></button1>
+      </div>
+      </div>
+   </div>
+</div>
+<!-- partial -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+  
+</body>
+
+
+
+</html>

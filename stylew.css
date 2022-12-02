@@ -1,0 +1,154 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none;
+  text-align: center;
+  outline: none;
+  border: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #212129;
+}
+
+img {
+  max-width: 100%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+html, body {
+  height: 150%;
+}
+
+body {
+  background: linear-gradient(to left, #FF6654, #FF295F);
+}
+
+.container {
+  position: relative;
+  background: #fff;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 150px;
+  padding: 50px;
+  border-radius: 20px;
+}
+.container .wrapper {
+  margin: 0;
+}
+.container .wrapper .header {
+  padding: 0;
+  margin-top: -30px;
+}
+.container .wrapper .header .price h1 {
+  color: #FE6417;
+  font-size: 1.65em;
+  text-align: center;
+  font-weight: bold;
+}
+.container .wrapper .header .heart-wrap {
+  position: relative;
+  right: 0;
+  left: 0;
+  margin-top: -30px;
+  text-align: right;
+}
+.container .wrapper .header .heart-wrap i.heart:after {
+  text-align: right;
+  content: "";
+  color: #FF1312;
+  font-size: 1.8em;
+}
+.container .wrapper .info {
+  padding: 0;
+}
+.container .wrapper .info .title h1 {
+  color: #6D1DEB;
+  font-size: 1.5em;
+  margin-top: 15px;
+  padding: 10px;
+}
+.container .wrapper .info .buyBtn {
+  background: #FECA1E;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 30px;
+  padding: 15px 80px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 300ms;
+}
+.container .wrapper .info .buyBtn:hover {
+  background: #212129;
+  color: #FECA1E;
+  transition: 300ms;
+}
+ul{
+    list-style-type: none;
+  margin: 0;
+  padding: 15px;
+  overflow: hidden;
+  /*background-color: #333333;*/
+}
+li {
+  float: left;
+   padding: 90px;
+   
+}
+#news{
+   float: right;
+}
+.Asset{
+   position: realtive;
+      top: -40px;
+   font-weight: bold;
+   background: black;
+   color: white;
+   font-size: 1em;
+}
+
+/*style*/
+.navbar{
+    background: #131313;
+    padding: 1rem 8rem;
+    z-index: 1000;
+}
+
+.navbar .navbar-brand{
+ font-size: 1.4rem;
+ font-weight: 700;
+}
+
+#navbarSupportedContent > ul > li:nth-child(n) > a{
+    color: #fff;
+    font-size: 1.1rem;
+    padding: 0 0.8rem;
+}
+#navbarSupportedContent > ul > li:nth-child(n) > a:hover, 
+#navbarSupportedContent > ul > li:nth-child(n) > a:active{
+color: #00BF85;
+}
+#navbarSupportedContent > button{
+    background: #00BF85;
+    font-weight: 600;
+    padding: 0.4rem 1.4rem;
+    border-radius: 30px;
+}
+.btn  {
+        margin-left: 1000px;
+       margin-left: 1000px;
+      background-color: red;
+      border: 1px solid #aaa;
+}
